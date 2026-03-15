@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import {
+  KeyboardTypeOptions,
   ImageBackground,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -8,13 +10,20 @@ import {
   TextInput,
   View
 } from "react-native";
+import Constants from "expo-constants";
 import { LinearGradient } from "expo-linear-gradient";
 import { theme } from "./theme";
+
+const TOP_SAFE_INSET = Platform.OS === "ios" ? Math.max(Constants.statusBarHeight, 52) : Math.max(Constants.statusBarHeight, 16);
 
 export function Screen({ children, scroll = false }: { children: ReactNode; scroll?: boolean }) {
   if (scroll) {
     return (
-      <ScrollView style={styles.screen} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.screen}
+        contentContainerStyle={[styles.scrollContent, { paddingTop: TOP_SAFE_INSET + 18 }]}
+        showsVerticalScrollIndicator={false}
+      >
         {children}
       </ScrollView>
     );
@@ -78,12 +87,18 @@ export function Input({
   value,
   onChangeText,
   placeholder,
-  multiline = false
+  multiline = false,
+  keyboardType,
+  autoCapitalize = "sentences",
+  autoCorrect = true
 }: {
   value: string;
   onChangeText: (text: string) => void;
   placeholder: string;
   multiline?: boolean;
+  keyboardType?: KeyboardTypeOptions;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
+  autoCorrect?: boolean;
 }) {
   return (
     <TextInput
@@ -92,6 +107,9 @@ export function Input({
       placeholder={placeholder}
       placeholderTextColor="#9CA3AF"
       multiline={multiline}
+      keyboardType={keyboardType}
+      autoCapitalize={autoCapitalize}
+      autoCorrect={autoCorrect}
       style={[styles.input, multiline && styles.textArea]}
     />
   );

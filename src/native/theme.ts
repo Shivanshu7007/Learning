@@ -1,16 +1,16 @@
 export const theme = {
   colors: {
-    background: "#FAFAF8",
+    background: "#FFF6FB",
     surface: "#FFFFFF",
     text: "#1A1A2E",
-    muted: "#7C7C98",
+    muted: "#8E809D",
     primary: "#7C3AED",
-    secondary: "#EC4899",
-    accent: "#2563EB",
-    border: "#E9D5FF",
-    success: "#22C55E",
-    warning: "#F59E0B",
-    danger: "#EF4444",
+    secondary: "#F05D9C",
+    accent: "#6D5EF3",
+    border: "#F0D8F2",
+    success: "#34C38F",
+    warning: "#F4A261",
+    danger: "#F45B7A",
     dark: "#0F0A1E",
     darkAlt: "#1A0533"
   }

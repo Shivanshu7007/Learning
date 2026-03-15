@@ -10,3 +10,6 @@ build/
 
 # environment variables
 .env
+.expo/
+.vscode/
+node_modules/
